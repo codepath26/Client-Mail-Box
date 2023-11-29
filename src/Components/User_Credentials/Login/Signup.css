@@ -1,0 +1,40 @@
+img{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fade-in{
+  animation: fadeIn 0.8s ease-in-out ;
+
+}
+.fade-out{
+  animation: fadeOut 0.8s ease-in-out ;
+
+}
+
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+    transform: translateX(-100%);
+    border: none;
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  
+  }
+  
+}
+@keyframes fadeOut {
+  from{
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+}
