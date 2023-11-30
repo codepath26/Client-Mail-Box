@@ -30,9 +30,8 @@ function MyTextEditor() {
       });
       setEmail('');
       setSubject('');
-      emailRef.current.value = '';
-      
-     console.log(response.data)
+      emailRef.current.value= '';
+      console.log(response)
 
     }catch(err){
       console.log(err)
