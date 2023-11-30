@@ -1,9 +1,8 @@
-
 import './App.css';
-import Signup from './Components/User_Credentials/Signup/Signup'
+import Routerprovider from './Router/Routerprovider';
 function App() {
 return(
-  <Signup/>
+  <Routerprovider/>
 )
 }
 
