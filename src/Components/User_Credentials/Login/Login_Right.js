@@ -36,6 +36,7 @@ const dispatch = useDispatch();
   const onSubmitHandler = async(e) => {
     e.preventDefault();
     // console.log('submit handler is called')
+    localStorage.setItem("userEmail", email);
     const user = {
       email: email,
       password: password,
