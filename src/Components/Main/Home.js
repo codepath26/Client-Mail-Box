@@ -1,8 +1,13 @@
 import React from 'react'
+import EmailSender from './EmailLayout';
 
 function Home() {
   return (
-    <div>Welcome To Your Mail Box</div>
+    <>
+    <div className='container border border-danger vh-100 '> 
+    <EmailSender/>
+    </div>
+    </>
   )
 }
 
