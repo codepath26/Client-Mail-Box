@@ -3,7 +3,7 @@ import { Navigate, Route,BrowserRouter as Router, Routes } from 'react-router-do
 import Login from '../Components/User_Credentials/Login/Login'
 import Signup from '../Components/User_Credentials/Signup/Signup'
 import ForgotPass from '../Components/User_Credentials/ForgotPass/Forgotpass'
-import Home from '../Components/Main/Home'
+import MainPage from '../Components/Main/MainPage'
 
 
 function Routerprovider() {
@@ -13,7 +13,7 @@ function Routerprovider() {
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/resetpassword' element={<ForgotPass/>}/>
-      <Route path='/main' element={<Home/>}/>
+      <Route path='/main' element={<MainPage/>}/>
       <Route path='*' element={<Navigate to='/signup'/>}/>
       </Routes>
     </Router>
