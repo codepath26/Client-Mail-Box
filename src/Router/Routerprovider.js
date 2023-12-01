@@ -6,6 +6,7 @@ import ForgotPass from '../Components/User_Credentials/ForgotPass/Forgotpass'
 import MainPage from '../Components/Main/MainPage'
 import Sent from '../Components/Sent/Sent'
 import SingleMail from '../Components/MailDetails/SingleMail'
+import Inbox from '../Components/Inbox/Inbox'
 
 
 function Routerprovider() {
@@ -17,6 +18,7 @@ function Routerprovider() {
       <Route path='/resetpassword' element={<ForgotPass/>}/>
       <Route path='/main' element={<MainPage/>}/>
       <Route path='/sent' element={<Sent/>}/>
+      <Route path='/inbox' element={<Inbox/>}/>
       <Route path='/maildetails/:id' element={<SingleMail/>}/>
       <Route path='*' element={<Navigate to='/signup'/>}/>
       </Routes>
