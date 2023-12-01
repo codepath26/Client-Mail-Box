@@ -6,9 +6,10 @@ const inititalemailState = {
   inboxEmails: [],
   error: null,
   status: "idle",
+  unReadEmails : 0
 };
 
-export const fetchMail = createAsyncThunk("emails/fetchMail", async () => {
+export const fetchMail = createAsyncThunk("emails/fetchMail", async (userEmail) => {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_FIREBASE_URL}email.json`
@@ -20,7 +21,11 @@ export const fetchMail = createAsyncThunk("emails/fetchMail", async () => {
           ...response.data[key],
         };
       });
-      return emailArray;
+      const senderEmail = emailArray.filter(email => {
+        return email.sender === userEmail ;
+      })
+      // console.log("sender email" ,senderEmail)
+      return senderEmail;
     } else {
       return [];
     }
@@ -95,7 +100,11 @@ export const emailSlice = createSlice({
     });
     builder.addCase(fetchInbox.fulfilled, (state, action) => {
       state.status = "successed";
-      state.inboxEmails = action.payload;
+      state.inboxEmails = action.payload; 
+      state.unReadEmails = action.payload.reduce((acc ,total)=> {
+        return acc + (total.readMail === false);
+      } ,0);
+      console.log(state.unReadEmails , "unread message");
     });
     builder.addCase(fetchInbox.pending, (state, action) => {
       state.status = "pending";
@@ -106,3 +115,4 @@ export const emailSlice = createSlice({
 
 export const emailActions = emailSlice.actions;
 export default emailSlice.reducer;
+

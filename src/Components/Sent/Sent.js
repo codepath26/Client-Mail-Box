@@ -10,7 +10,8 @@ function Sent() {
   const dispatch = useDispatch();
   const  navigate = useNavigate();
   useEffect(()=>{
-    dispatch(fetchMail());
+    const userEmail = localStorage.getItem('userEmail');  
+    dispatch(fetchMail(userEmail));
   },[dispatch]);
   const getDetails = (id)=>{
    navigate(`/maildetails/${id}`);
@@ -27,7 +28,7 @@ function Sent() {
         {
           inboxMails.map((email)=>{
            return <div key={email.id} onClick={()=>getDetails(email.id)} className='text-primary  cursor-pointer border mt-2 p-1 '>
-            <span>Sender : {email.sender || "no sender"}</span>
+            <span className='me-4'>To : {email.recipient}</span>
             <span>Subject : {email.subject}</span>
             </div>
           })
