@@ -14,7 +14,9 @@ function Inbox() {
   useEffect(() => {
     // console.log("at Inbox useeffect bro")
     // console.log(email)
-    dispatch(fetchInbox(email));
+    setInterval(() => {
+      dispatch(fetchInbox(email));
+    }, 3000);
   }, [email, dispatch]);
   const getDetails = (email) => {
     // const reademailsId = localStorage.getItem('readEmails');
