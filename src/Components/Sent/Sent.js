@@ -20,7 +20,7 @@ function Sent() {
     <div className="vh-100">
       <div className="d-flex justify-content-between p-2">
         <span>Welcome To Your MailBox</span>
-        <Button variant='primary'>Back</Button>
+        <Button variant='primary' onClick={()=>navigate("/main")}>Back</Button>
       </div>
       <div className="border border-danger">
        <ul>

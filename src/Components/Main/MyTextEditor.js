@@ -24,7 +24,8 @@ function MyTextEditor() {
       const response = await axios.post(`${process.env.REACT_APP_FIREBASE_URL}email.json` ,{
         recipient : email,
         subject : subject,
-        text: text,
+        readMail : false,
+        text: newText,
         sender: userEmail ,
         blueTick: true,
       });
