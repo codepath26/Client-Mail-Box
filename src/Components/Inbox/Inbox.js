@@ -12,8 +12,6 @@ function Inbox() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    // console.log("at Inbox useeffect bro")
-    // console.log(email)
     setInterval(() => {
       dispatch(fetchInbox(email));
     }, 3000);
