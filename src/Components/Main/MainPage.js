@@ -1,16 +1,17 @@
 import React from "react";
 
-import { Button, Container } from "react-bootstrap";
+import { Badge, Button, Container } from "react-bootstrap";
 import MyTextEditor from "./MyTextEditor";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../Store/Auth";
 
 
 function MainPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const unreadMessage = useSelector(state =>state.emails.unReadEmails);
+  // console.log(unreadMessage)
   const inboxHandler = ()=>{
     navigate('/inbox');
   }
@@ -32,7 +33,7 @@ function MainPage() {
         </div>
         <div className="d-inline-block float-right">
         <Button onClick={logoutHandler} size="sm" variant="danger" className="mx-1">logout</Button>
-        <Button onClick={inboxHandler} size="sm" variant="primary" className="mx-1">inbox</Button>
+        <Button onClick={inboxHandler} size="sm" variant="primary" className="mx-1">inbox <Badge bg="secondary">{unreadMessage}</Badge></Button>
         <Button onClick={sentHandler} size="sm" variant="success" className="mx-1">sent</Button>
         </div>
       </nav>

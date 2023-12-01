@@ -39,6 +39,7 @@ export const fetchMail = createAsyncThunk(
 );
 
 export const fetchInbox = createAsyncThunk("fetchInbox", async (emailId) => {
+
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_FIREBASE_URL}email.json`
@@ -59,6 +60,7 @@ export const fetchInbox = createAsyncThunk("fetchInbox", async (emailId) => {
   } catch (err) {
     console.log(err);
   }
+
 });
 export const setReadMail = createAsyncThunk("setReadMail", async (id) => {
   try {
@@ -117,6 +119,7 @@ export const emailSlice = createSlice({
     builder.addCase(fetchInbox.fulfilled, (state, action) => {
       state.status = "successed";
       state.inboxEmails = action.payload;
+      console.log('fectbox fullfield')
       state.unReadEmails = action.payload.reduce((acc, total) => {
         return acc + (total.readMail === false);
       }, 0);
