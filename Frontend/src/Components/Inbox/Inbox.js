@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMail, fetchInbox, setReadMail } from "../../Store/EmailSlice";
+import { deleteMail, fetchInbox } from "../../Store/EmailSlice";
 import { useNavigate } from "react-router-dom";
 
 function Inbox() {
@@ -13,21 +13,22 @@ function Inbox() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-   let timer = setInterval(() => {
+  //  let timer = setInterval(() => {
       dispatch(fetchInbox(email));
-    }, 3000);
-    return ()=>{
-      clearTimeout(timer)
-    }
+    // }, 3000);
+    // return ()=>{
+      // clearTimeout(timer)
+    // }
   }, [email, dispatch]);
   const getDetails = (email) => {
     // const reademailsId = localStorage.getItem('readEmails');
     // localStorage.setItem('readEmails' ,[...reademailsId,id]);
-    dispatch(setReadMail(email.id));
-    navigate(`/maildetails/${email.id}`);
+    const from = "inbox"
+    // dispatch(setReadMail(email.id));
+    navigate(`/maildetails/${from}/${email._id}`);
   };
   const removeMail = (id)=>{
-    console.log("removeMailis Called with id" , id.id);
+    console.log("removeMailis Called with id" , id);
     dispatch(deleteMail(id));
   }
   return (
@@ -42,9 +43,10 @@ function Inbox() {
         <div className="p-10">
           <ul >
             {inboxMails.map((email) => {
+              console.log(email._id , "this is the email")
               return (
                 <div
-                  key={email.id}
+                  key={email._id}
                   onClick={() => getDetails(email)}
                   className="text-black border border-blue-600 rounded  cursor-pointer  mt-2 p-1 flex justify-between align-center"
                 >
@@ -62,8 +64,8 @@ function Inbox() {
                   <div>
                   <button onClick={(e)=>{
                     e.stopPropagation();
-                    removeMail(email.id)
-                    }} className="btn btn-sm btn-danger float-end me-5">
+                    removeMail(email._id)
+                    }} className="bg-red-600 py-1 px-4   text-white rounded me-5">
                     Remove
                   </button>
                   </div>

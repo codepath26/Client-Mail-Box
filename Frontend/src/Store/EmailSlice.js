@@ -15,9 +15,11 @@ export const fetchMail = createAsyncThunk(
   async (userEmail) => {
     try {
      
-      const response = await axios.get(
-        `${process.env.REACT_APP_FIREBASE_URL}email.json`
-      );
+      // const response = await axios.get(
+      //   `${process.env.REACT_APP_FIREBASE_URL}email.json`
+      // );
+      const response = await axios.get(`http://localhost:5000/user/sent/${userEmail}`);
+      console.log('response from the sent inbox' , response);
       if (response.data) {
         const emailArray = Object.keys(response.data).map((key) => {
           return {
@@ -43,44 +45,46 @@ export const fetchMail = createAsyncThunk(
 export const fetchInbox = createAsyncThunk("fetchInbox", async (emailId) => {
 
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_FIREBASE_URL}email.json`
-    );
+    // const response = await axios.get(
+    //   `${process.env.REACT_APP_FIREBASE_URL}email.json`
+    // );
     // console.log(response.data);
-    const emailsArray = Object.keys(response.data).map((key) => {
-      return {
-        id: key,
-        ...response.data[key],
-      };
-    });
-    const inboxMails = emailsArray.filter((email) => {
-      console.log(email.recipient, "===>this is email", emailId);
-      return email.recipient === emailId;
-    });
-
+    const response = await axios.get(`http://localhost:5000/user/inbox/${emailId}`);
+    // const emailsArray = Object.keys(response.data).map((key) => {
+    //   return {
+    //     id: key,
+    //     ...response.data[key],
+    //   };
+    // });
+    // const inboxMails = emailsArray.filter((email) => {
+    //   console.log(email.recipient, "===>this is email", emailId);
+    //   return email.recipient === emailId;
+    // });
+   const inboxMails = response.data
     return inboxMails;
   } catch (err) {
     console.log(err);
   }
 
 });
-export const setReadMail = createAsyncThunk("setReadMail", async (id) => {
-  try {
-    const response = await axios.patch(
-      `${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`,
-      { readMail: true }
-    );
-    console.log("from setreammails", response);
-  } catch (err) {
-    console.log(err);
-  }
-});
+// export const setReadMail = createAsyncThunk("setReadMail", async (id) => {
+//   try {
+//     const response = await axios.patch(
+//       `${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`,
+//       { readMail: true }
+//     );
+//     console.log("from setreammails", response);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 export const deleteMail = createAsyncThunk("deleteMail", async (id) => {
   try {
     console.log("starting of delete Mail");
-    const response = await axios.delete(
-      `${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`
-    );
+    // const response = await axios.delete(
+    //   `${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`
+    // );
+    const response = axios.delete(`http://localhost:5000/user/inbox/remove/${id}`);
     console.log(response.data, "from delteMail");
     console.log("ending of delete mail", id);
     return id;

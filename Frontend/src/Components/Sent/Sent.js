@@ -14,8 +14,9 @@ function Sent() {
     dispatch(fetchMail(userEmail));
   },[dispatch]);
   const getDetails = (id)=>{
+    const from = "sent"
     console.log( "this is the id",id);
-   navigate(`/maildetails/${id.id}`);
+   navigate(`/maildetails/${from}/${id}`);
   }
   return (
   <>
@@ -30,18 +31,19 @@ function Sent() {
         <div className="p-10">
           <ul >
             {inboxMails.map((email) => {
+              // console.log("on sent field" , email._id)
               return (
                 <div
-                  key={email.id}
-                  onClick={() => getDetails(email)}
+                  key={email._id}
+                  onClick={() => getDetails(email._id)}
                   className="text-black border border-blue-600 rounded  cursor-pointer  mt-2 p-1 flex justify-between align-center"
                 >
                   <div>
-                    {email.readMail ? (
+                    {email.blueTick ? (
                       ""
                     ) : (
                       <span className="ms-1 me-5 relative">
-                        <span className="absolute top-[8px] start-[1px] p-1 bg-red-700 border border-none rounded-full"></span>
+                        <span className="absolute top-[8px] start-[1px] p-1 bg-purple-700 border border-none rounded-full"></span>
                       </span>
                     )}
                     <span className="me-2">Sender : {email.sender}</span>

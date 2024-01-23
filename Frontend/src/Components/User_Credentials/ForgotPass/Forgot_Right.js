@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ForgotRight() {
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
   // const {logginHandler} = useAuthContext();
@@ -11,23 +11,36 @@ function ForgotRight() {
 
   const onForgotPass = async (e) => {
     e.preventDefault();
-    let email = localStorage.getItem('email');
-    console.log(email)
     console.log("forgot password is called")
     const data = {
-      requestType: "PASSWORD_RESET",
       email: email,
     };
     try {
-      const response = await axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,data);
-      console.log("Forgotpass",response);
-      // logginHandler(response.data.refreshToken);
-      navigate('/login');
-    } catch (err) {
-      console.log(err);
-    }
-   };
+      // const response = await axios.post(
+      //   `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,data);
+      // console.log("Forgotpass",response);
+
+      const response = await axios.post('http://localhost:5000/user/forgotpassword',data);
+     console.log(response.data);
+      if(response.status === 202){
+        console.log("mail sent successfully")
+         navigate('/login');
+     } else {
+         console.log("somthing went wrong");
+     }
+      }catch(err){
+     if(err.response.status === 500){
+    console.log(err.response)
+  
+        }else{
+        console.log(err);
+  }
+ }
+
+  }
+
+
+
    return (
      <>
        <div className="md:w-1/2 w-full  flex justify-center md:py-10 bg-gray-800">
@@ -41,14 +54,15 @@ function ForgotRight() {
             </div>
             <div className="flex flex-col mb-2">
               <label className="text-xl text-white my-4" htmlFor="password">
-                New Password
+                Enter Your Mail
               </label>
               <input
-                type="password"
+                type="email"
                 className="p-2 fs-4"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="text-center  mb-2">

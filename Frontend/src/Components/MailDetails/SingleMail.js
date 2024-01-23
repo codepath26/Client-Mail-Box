@@ -6,14 +6,16 @@ import TopBack from '../TopBack';
 import LeftImage from '../LeftImage';
 
 function SingleMail() {
-  const {id} = useParams();
+  const {id , from} = useParams();
+  console.log("from the params id is " , id );
   const [emailData , setEmailData] = useState({});
   console.log("this is the email data" , emailData)
 
   useEffect(()=>{
-    const getSingleMail = async(id)=>{
+    const getSingleMail = async(id,from)=>{
       try{
-        const response = await axios.get(`${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`)
+        // const response = await axios.get(`${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`)
+        const response = await axios.get(`http://localhost:5000/user/${from}/details/${id}`);
         console.log(response.data , "this is useeffect check the read statement");
          setEmailData( response.data);
         }catch(err){
@@ -21,9 +23,9 @@ function SingleMail() {
       }
       
     }
-    getSingleMail(id);
+    getSingleMail(id , from);
     
-  },[id])
+  },[id ,from])
   // console.log(emailData , "this is email details")
   return (
     <>
