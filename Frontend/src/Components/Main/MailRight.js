@@ -15,6 +15,7 @@ function MyTextEditor() {
   // const newText = text.replace(/<\/?p>/g, "");
   // setText(newText);
   // }
+  console.log(process.env.BASE_URL)
   const handleSendClick = async(e)=>{
     e.preventDefault();
     const text = emailRef.current.value;
@@ -22,14 +23,25 @@ function MyTextEditor() {
     const newText = text.replace(/<\/?p>/g, "");
     console.log(newText);
     try{
-      const response = await axios.post(`${process.env.REACT_APP_FIREBASE_URL}email.json` ,{
-        recipient : email,
-        subject : subject,
-        readMail : false,
-        text: newText,
-        sender: userEmail ,
-        blueTick: true,
-      });
+      // const response = await axios.post(`${process.env.REACT_APP_FIREBASE_URL}email.json` ,{
+      //   recipient : email,
+      //   subject : subject,
+      //   readMail : false,
+      //   text: newText,
+      //   sender: userEmail ,
+      //   blueTick: true,
+      // });
+
+      const data = {
+          recipient : email,
+          subject : subject,
+          readMail : false,
+          text: newText,
+          sender: userEmail ,
+          blueTick: true,
+        }
+
+      const response = await axios.post(`http://localhost:5000/user/email` ,data);
       console.log("sent responose" , response)
       setEmail('');
       setSubject('');

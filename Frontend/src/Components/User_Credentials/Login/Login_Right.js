@@ -40,17 +40,17 @@ const dispatch = useDispatch();
       password: password,
     };
       try{
-        console.log("loging handler")
+        // console.log("loging handler")
         const data = await sendRequest(user);
         //  logginHandler(data.idToken)
-        console.log(data);
+        // console.log( 'this is the data from the login',data);
          dispatch(authAction.login({token : data.idToken}));
         setMsg("Login...");
         setEmail('');
         setPassword('');
         navigate('/inbox');
       }catch(err){
-        console.log(err);
+        // console.log(err);
         setMsg(err.message);
       }
       setTimeout(() => {
