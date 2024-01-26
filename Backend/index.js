@@ -5,7 +5,7 @@ const  DatabaseConnection  = require('./utils/database');
 const loginRoutes = require('./Routes/user/authroutes');
 const emailRoutes = require('./Routes/emailRoutes');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
