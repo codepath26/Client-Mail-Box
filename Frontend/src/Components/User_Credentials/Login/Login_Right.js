@@ -73,11 +73,11 @@ const dispatch = useDispatch();
           <div className="md:my-10 my-4   text-[#6b21a8] text-[30px] text-center py-4 font-bold">
             <h2>Login With Your Accoun</h2>
           </div>
-          <div className="border y-4 flex ps-2 h-16">
+          <div className="border border-gray-600 my-4 md:w-full w-[95%] flex ps-2 h-16">
             <i className="fa-solid fa-envelope my-auto text-xl"></i>
             <input type="text" className="w-[98%] border-none ps-2 h-full focus:outline-none" placeholder="Your Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
           </div>
-          <div className="border my-4 flex ps-2 h-16">
+          <div className="border  border-gray-600 my-4 md:w-full w-[95%] flex ps-2 h-16">
             <i className="fa-solid fa-unlock my-auto text-xl"></i>
             <input type="text" className="w-[98%] border-none ps-2 h-full focus:outline-none" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
           </div>

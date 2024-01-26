@@ -15,7 +15,7 @@ function SingleMail() {
     const getSingleMail = async(id,from)=>{
       try{
         // const response = await axios.get(`${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`)
-        const response = await axios.get(`http://localhost:5000/user/${from}/details/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${from}/details/${id}`);
         console.log(response.data , "this is useeffect check the read statement");
          setEmailData( response.data);
         }catch(err){

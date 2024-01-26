@@ -3,7 +3,7 @@ const Email = require("../models/email");
 exports.sendmail = async (req, res) => {
   try {
     const { recipient, subject, readMail, text, sender, blueTick } = req.body;
-    // console.log(req.body);
+    console.log("We are here bro" , req.body);
     const newEmail = new Email({
       recipient,
       subject,
@@ -12,10 +12,13 @@ exports.sendmail = async (req, res) => {
       sender,
       blueTick,
     });
+    console.log(newEmail , "this is new email")
     const result = await newEmail.save();
+    console.log("this is the result" , result);
 
     res.status(200).json(result);
   } catch (error) {
+    console.log(error)
     res.status(500).json({error});
   }
 };

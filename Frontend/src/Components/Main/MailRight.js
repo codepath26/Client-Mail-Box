@@ -41,7 +41,7 @@ function MyTextEditor() {
           blueTick: true,
         }
 
-      const response = await axios.post(`http://localhost:5000/user/email` ,data);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/email` ,data);
       console.log("sent responose" , response)
       setEmail('');
       setSubject('');

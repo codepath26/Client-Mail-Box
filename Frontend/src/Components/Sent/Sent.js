@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Sent() {
   const emails = useSelector(state=>state.emails);
   const inboxMails = emails.emails;
+  // console.log("this is the send mail" , inboxMails)
   const dispatch = useDispatch();
   const  navigate = useNavigate();
   useEffect(()=>{
@@ -36,7 +37,7 @@ function Sent() {
                 <div
                   key={email._id}
                   onClick={() => getDetails(email._id)}
-                  className="text-black border border-blue-600 rounded  cursor-pointer  mt-2 p-1 flex justify-between align-center"
+                  className="text-black py-2 ps-2 border border-gray-200 hover:shadow-lg hover:border-gray-300 rounded  cursor-pointer  p-1 flex justify-between align-center"
                 >
                   <div>
                     {email.blueTick ? (
@@ -46,7 +47,7 @@ function Sent() {
                         <span className="absolute top-[8px] start-[1px] p-1 bg-purple-700 border border-none rounded-full"></span>
                       </span>
                     )}
-                    <span className="me-2">Sender : {email.sender}</span>
+                    <span className="me-2">Receiver : {email.recipient}</span>
                     <span>Subject : {email.subject}</span>{" "}
                   </div>
                 </div>

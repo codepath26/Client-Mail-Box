@@ -20,7 +20,7 @@ function Routerprovider() {
       <Route path='/sent' element={<Sent/>}/>
       <Route path='/inbox' element={<Inbox/>}/>
       <Route path='/maildetails/:from/:id' element={<SingleMail/>}/>
-      {/* <Route path='*' element={<Navigate to='/signup'/>}/> */}
+       <Route path='*' element={<Navigate to='/signup'/>}/> 
       </Routes>
     </Router>
   )
