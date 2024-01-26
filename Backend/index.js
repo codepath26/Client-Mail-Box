@@ -11,9 +11,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use('/user',loginRoutes);
 app.use( '/user',emailRoutes);
-
-
-
 const DbConnection = async()=>{
   try{
     const DbResult = await DatabaseConnection();

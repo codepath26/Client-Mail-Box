@@ -10,13 +10,14 @@ async function sendRequest(user) {
     // );
 
     //MONGODB CONNECTION
-    const response = await axios.post('http://localhost:5000/user/add-user' , user);
-    console.log("this is the data from ",  response);
+    // console.log(process.env.REACT_APP_BASE_URL , "this is the root url")
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/add-user` , user);
+    // console.log("this is the data from ");
     localStorage.setItem('email' , response.data.email );
 
   } catch (err) {
-    console.log("this is the error" , err);
-    throw new Error(err.response.data.error.message);
+    // console.log("this is the error" , err.response.data.message);
+    throw new Error(err.response.data.message);
   }
 }
 

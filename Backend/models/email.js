@@ -17,8 +17,7 @@ const  emailSchema = new Schema({
   },
   text : {
     type : String,
-    required : true,
-
+  
   },
   sender : {
     type : String,

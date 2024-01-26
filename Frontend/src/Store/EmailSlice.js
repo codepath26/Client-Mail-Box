@@ -18,7 +18,7 @@ export const fetchMail = createAsyncThunk(
       // const response = await axios.get(
       //   `${process.env.REACT_APP_FIREBASE_URL}email.json`
       // );
-      const response = await axios.get(`http://localhost:5000/user/sent/${userEmail}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/sent/${userEmail}`);
       console.log('response from the sent inbox' , response);
       if (response.data) {
         const emailArray = Object.keys(response.data).map((key) => {
@@ -49,7 +49,7 @@ export const fetchInbox = createAsyncThunk("fetchInbox", async (emailId) => {
     //   `${process.env.REACT_APP_FIREBASE_URL}email.json`
     // );
     // console.log(response.data);
-    const response = await axios.get(`http://localhost:5000/user/inbox/${emailId}`);
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/inbox/${emailId}`);
     // const emailsArray = Object.keys(response.data).map((key) => {
     //   return {
     //     id: key,
@@ -84,7 +84,7 @@ export const deleteMail = createAsyncThunk("deleteMail", async (id) => {
     // const response = await axios.delete(
     //   `${process.env.REACT_APP_FIREBASE_URL}email/${id}.json`
     // );
-    const response = axios.delete(`http://localhost:5000/user/inbox/remove/${id}`);
+    const response = axios.delete(`${process.env.REACT_APP_BASE_URL}/user/inbox/remove/${id}`);
     console.log(response.data, "from delteMail");
     console.log("ending of delete mail", id);
     return id;
@@ -139,6 +139,7 @@ export const emailSlice = createSlice({
       console.log("id", action.payload);
       const oldEmails = [...state.inboxEmails];
       console.log("odl mails", oldEmails);
+      
       const newEmails = oldEmails.filter((email) => {
         console.log(email.id, "<==>", action.payload);
         return email.id !== action.payload;

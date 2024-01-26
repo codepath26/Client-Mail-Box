@@ -13,12 +13,12 @@ function Inbox() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-  //  let timer = setInterval(() => {
+   let timer = setInterval(() => {
       dispatch(fetchInbox(email));
-    // }, 3000);
-    // return ()=>{
-      // clearTimeout(timer)
-    // }
+    }, 3000);
+    return ()=>{
+      clearTimeout(timer)
+    }
   }, [email, dispatch]);
   const getDetails = (email) => {
     // const reademailsId = localStorage.getItem('readEmails');
@@ -48,7 +48,7 @@ function Inbox() {
                 <div
                   key={email._id}
                   onClick={() => getDetails(email)}
-                  className="text-black border border-blue-600 rounded  cursor-pointer  mt-2 p-1 flex justify-between align-center"
+                  className="text-black border border-gray-200 hover:shadow-lg hover:border-gray-300 rounded  cursor-pointer   p-1 flex justify-between align-center"
                 >
                   <div>
                     {email.readMail ? (

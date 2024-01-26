@@ -20,7 +20,7 @@ function ForgotRight() {
       //   `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,data);
       // console.log("Forgotpass",response);
 
-      const response = await axios.post('http://localhost:5000/user/forgotpassword',data);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/forgotpassword`,data);
      console.log(response.data);
       if(response.status === 202){
         console.log("mail sent successfully")
