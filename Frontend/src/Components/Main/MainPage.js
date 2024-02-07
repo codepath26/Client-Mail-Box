@@ -1,16 +1,15 @@
 import React from "react";
 import MailRight from "./MailRight";
 import MainLeft from "./MainLeft";
-import Top from "./Top";
+import NavigationBar from "../Navigation/NavigationBar";
 
 function MainPage() {
   return (
     <>
-      <Top />
-      <div className="w-screen h-screen flex overflow-hidden">
+      <NavigationBar />
+      <div className="flex overflow-x-hidden">
         <MainLeft />
         <MailRight />
-        {/* <MyTextEditor /> */}
       </div>
     </>
   );

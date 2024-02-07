@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteMail, fetchInbox } from "../../Store/EmailSlice";
 import { useNavigate } from "react-router-dom";
+import NavigationBar from "../Navigation/NavigationBar";
 
 function Inbox() {
   const emails = useSelector((state) => state.emails);
@@ -33,22 +34,17 @@ function Inbox() {
   }
   return (
     <>
-      <div className="h-screen">
-        <div className="border flex justify-between p-2">
-          <h1 className="text-[#6b21a8] text-[30px] text-center  relative w-[100%]">Welcome To Your MailBox</h1>
-          <button className="absolute right-10 top-5 bg-[#6b21a8] text-white px-4 py-1 border-none rounded" onClick={() => navigate("/main")}>
-           Compose
-          </button>
-        </div>
-        <div className="p-10">
-          <ul >
+       <NavigationBar />
+      <div className="">
+        <div className=" p-2">
+          <ul className="flex flex-col flex-wrap " >
             {inboxMails.map((email) => {
               console.log(email._id , "this is the email")
               return (
                 <div
                   key={email._id}
                   onClick={() => getDetails(email)}
-                  className="text-black border border-gray-200 hover:shadow-lg hover:border-gray-300 rounded  cursor-pointer   p-1 flex justify-between align-center"
+                  className="text-black border border-gray-200 hover:shadow-lg hover:border-gray-300 rounded  cursor-pointer   p-1 flex justify-between align-center flex-wrap"
                 >
                   <div>
                     {email.readMail ? (

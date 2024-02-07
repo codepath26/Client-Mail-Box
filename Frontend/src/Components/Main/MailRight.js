@@ -57,19 +57,19 @@ function MyTextEditor() {
     <div className=" w-full md:w-1/2 pt-20 px-4 ">
         <h1 className="text-[20px] font-bold text-purple-700 text-center mt-2">Type Your Email</h1>
       <form className="pt-8 md:pt-3 ">
-        <div className="mb-5 p-2 border">
+        <div className="mb-5 p-2 flex sm:flex-row flex-col">
           <label htmlFor="email" className="text-[20px]" >To :</label>
-          <input type="email" className="focus:outline-none ps-2" id="email" placeholder="  name@example.com"
+          <input type="email" className="focus:outline-none w-[90%] ps-2 " id="email" placeholder="  name@example.com"
           value={email} onChange={(e)=>{setEmail(e.target.value)}}
           />
         </div>
-        <div className="mb-5 p-2 border" >
+        <div className="mb-5 p-2 border flex sm:flex-row flex-col" >
           <label htmlFor="subject" className="text-[20px]">Subject : </label>
           <input
           type="text"
           id="subject"
           placeholder="Type Your Subject"
-          className="focus:outline-none ps-2"
+          className="focus:outline-none ps-2 w-[80%]"
           value={subject} onChange={(e)=>{setSubject(e.target.value)}}
           />
         </div>

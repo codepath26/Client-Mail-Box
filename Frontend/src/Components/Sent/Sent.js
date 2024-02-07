@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMail } from '../../Store/EmailSlice';
 import { useNavigate } from 'react-router-dom';
+import NavigationBar from '../Navigation/NavigationBar';
 
 function Sent() {
   const emails = useSelector(state=>state.emails);
@@ -21,23 +22,18 @@ function Sent() {
   }
   return (
   <>
-    <div className="h-screen w-screen">
-    <div className="border flex justify-between p-2">
-          <h1 className="text-[#6b21a8] text-[30px] text-center  relative w-[100%]">Welcome To Your MailBox</h1>
-          <button className="absolute right-10 top-5 bg-[#6b21a8] text-white px-4 py-1 border-none rounded" onClick={() => navigate("/main")}>
-           Compose
-          </button>
-        </div>
+   <NavigationBar />
+    <div className="p-10">
 
-        <div className="p-10">
-          <ul >
+        <div className="rounded-tl-[20px]  rounded-br-[20px] rounded-bl-md  rounded-tr-md border border-indigo-400">
+          <ul className='flex flex-col flex-wrap' >
             {inboxMails.map((email) => {
               // console.log("on sent field" , email._id)
               return (
                 <div
                   key={email._id}
                   onClick={() => getDetails(email._id)}
-                  className="text-black py-2 ps-2 border border-gray-200 hover:shadow-lg hover:border-gray-300 rounded  cursor-pointer  p-1 flex justify-between align-center"
+                  className="text-black py-2 mx-2 border border-gray-200 hover:shadow-lg hover:border-gray-300   cursor-pointer"
                 >
                   <div>
                     {email.blueTick ? (
